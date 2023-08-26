@@ -3,12 +3,13 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   app: {
     baseURL: '/nether-calculator-nuxt',
+    buildAssetsDir: 'assets',
     head: {
       title: 'Nether Calculator',
       link: [
         { 
           rel: 'icon', 
-          href: '/logo.png' 
+          href: 'https://cdn.discordapp.com/attachments/940834033825349653/1144841218107375646/logo.png' 
         },
         { 
           rel: "stylesheet", 
