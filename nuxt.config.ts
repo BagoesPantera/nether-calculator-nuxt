@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   app: {
+    baseURL: '/nether-calculator-nuxt',
     head: {
       title: 'Nether Calculator',
       link: [

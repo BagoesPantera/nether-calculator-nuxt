@@ -25,7 +25,7 @@ function calculateOver() {
 <template>
     <main >
         <div class="d-flex flex-column min-vh-100 align-items-center justify-content-center body p-5">
-            <div class="bg-secondary bg-opacity-50 rounded p-5">
+            <div class="bg-secondary bg-opacity-25 rounded p-5">
                 <div class="text-center">
                     <h1 class="text-white">Nether Calculator</h1>
                 </div>
@@ -54,21 +54,19 @@ function calculateOver() {
                         <!-- COL Nether -->
                         <div class="col custom-col w-100 d-flex align-items-center justify-content-center">
                             <div class="w-100 rounded p-5 nether-card">
-                                
-                                    <h3 class="text-white">Nether</h3>
-                                    <div class="input-group mb-1">
-                                        <span class="input-group-text input">X</span>
-                                        <input type="number" class="form-control input" v-model="xnether" @keyup="calculateOver">
-                                    </div>
-                                    <div class="input-group mb-1">
-                                        <span class="input-group-text input">Y</span>
-                                        <input type="number" class="form-control input" v-model="ynether" @keyup="calculateOver">
-                                    </div>
-                                    <div class="input-group mb-1">
-                                        <span class="input-group-text input">Z</span>
-                                        <input type="number" class="form-control input" v-model="znether" @keyup="calculateOver">
-                                    </div>
-                                
+                                <h3 class="text-white">Nether</h3>
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text input">X</span>
+                                    <input type="number" class="form-control input" v-model="xnether" @keyup="calculateOver">
+                                </div>
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text input">Y</span>
+                                    <input type="number" class="form-control input" v-model="ynether" @keyup="calculateOver">
+                                </div>
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text input">Z</span>
+                                    <input type="number" class="form-control input" v-model="znether" @keyup="calculateOver">
+                                </div>
                             </div>
                         </div>
                     </div>
