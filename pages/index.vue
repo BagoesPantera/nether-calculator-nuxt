@@ -20,7 +20,8 @@ function calculateOver() {
 }
 </script>
 <template>
-    <main>
+    <main style="background: rgb(90,160,125);
+background: linear-gradient(90deg, rgba(90,160,125,1) 1%, rgba(0,255,231,1) 100%); height: 100vh;">
         <div class="text-center">
             <h1>Nether Calculator</h1>
         </div>
@@ -28,7 +29,7 @@ function calculateOver() {
             <!-- ROW -->
             <div class="row w-100"> 
                  <!-- COL Overworld -->
-                <div class="col overworld w-100 bg-primary d-flex align-items-center justify-content-center" style="height: 45vh;">
+                <div class="col overworld w-100 bg-primary d-flex align-items-center justify-content-center" style="height: 30vh;">
                     <div class="w-75 bg-danger rounded px-5 py-1 ">
                         <h3>Overworld</h3>
                         <div class="input-group mb-1">
@@ -47,7 +48,7 @@ function calculateOver() {
                     
                 </div>
                 <!-- COL Nether -->
-                <div class="col nether bg-warning w-100 d-flex align-items-center justify-content-center" style="height: 45vh;">
+                <div class="col nether bg-warning w-100 d-flex align-items-center justify-content-center" style="height: 30vh;">
                     <div class="w-75 bg-danger">
                         <h3>Nether</h3>
                         <div class="input-group mb-3">
@@ -66,5 +67,21 @@ function calculateOver() {
                 </div>
             </div>
         </div>
+        <div class="container">
+            <h3>Instructions</h3>
+            <ol>
+                <li>Build your nether portal in the overworld, but do not light it yet.</li>
+                <li>Press F3 while inside your portal frame and note your portal's coordinates. Fill these overworld coordinates in in the calculator. The nether coordinates will automatically be calculated.</li>
+                <li>Light your portal and go into the Nether.</li>
+                <li>Go to your coordinates in the Nether: {{ `(${xnether},${ynether},${znether}).` }}</li>
+                <li>Place a obsidian block on these coordinates.</li>
+                <li>Use the obsidian as the base of your portal, finish your portal and light it.</li>
+                <li>Important! Remove/disable your old portal you came through in step 3</li>
+                <li>Go through your newly built portal in the nether at {{ `(${xnether},${ynether},${znether}).` }}</li>
+            </ol>
+        </div>
+        <div class="position-absolute bottom-0 start-50 translate-middle">
+        <span>By: <a class="link-info" href="https://github.com/BagoesPantera" target="_blank">pantera</a></span>
+    </div>
     </main>
 </template>
