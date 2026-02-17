@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
+  nitro: {
+    compatibilityDate: '2026-02-17',
+  },
   app: {
     baseURL: '/nether-calculator-nuxt',
     buildAssetsDir: 'assets',
