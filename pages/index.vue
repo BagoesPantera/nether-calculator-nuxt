@@ -8,87 +8,151 @@ const ynether = ref(65);
 const znether = ref(0);
 
 function calculateNether() {
-    xnether.value = Math.floor(xover.value/8);
-    ynether.value = yover.value;
-    znether.value = Math.floor(zover.value/8);
+  xnether.value = Math.floor(xover.value / 8);
+  ynether.value = yover.value;
+  znether.value = Math.floor(zover.value / 8);
 }
 
 function calculateOver() {
-    xover.value = xnether.value*8;
-    yover.value = ynether.value;
-    zover.value = znether.value*8;
+  xover.value = xnether.value * 8;
+  yover.value = ynether.value;
+  zover.value = znether.value * 8;
 }
 </script>
 <style>
-@import url('~/assets/css/home.css');
+@import url("~/assets/css/home.css");
 </style>
 <template>
-    <main >
-        <div class="d-flex flex-column min-vh-100 align-items-center justify-content-center body p-5">
-            <div class="bg-secondary bg-opacity-25 rounded p-5">
-                <div class="text-center">
-                    <h1 class="text-white">Nether Calculator</h1>
-                </div>
-                <div class="container d-flex align-items-center justify-content-center">
-                    <!-- ROW -->
-                    <div class="row w-100"> 
-                        <!-- COL Overworld -->
-                        <div class="col custom-col w-100 d-flex align-items-center justify-content-center">
-                            <div class="w-100 rounded px-5 py-5 overworld-card">
-                                <h3 class="text-white">Overworld</h3>
-                                <div class="input-group mb-1">
-                                    <span class="input-group-text input">X</span>
-                                    <input type="number" class="form-control input" v-model="xover" @keyup="calculateNether">
-                                </div>
-                                <div class="input-group mb-1">
-                                    <span class="input-group-text input">Y</span>
-                                    <input type="number" class="form-control input" v-model="yover" @keyup="calculateNether">
-                                </div>
-                                <div class="input-group mb-1">
-                                    <span class="input-group-text input">Z</span>
-                                    <input type="number" class="form-control input" v-model="zover" @keyup="calculateNether">
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <!-- COL Nether -->
-                        <div class="col custom-col w-100 d-flex align-items-center justify-content-center">
-                            <div class="w-100 rounded p-5 nether-card">
-                                <h3 class="text-white">Nether</h3>
-                                <div class="input-group mb-1">
-                                    <span class="input-group-text input">X</span>
-                                    <input type="number" class="form-control input" v-model="xnether" @keyup="calculateOver">
-                                </div>
-                                <div class="input-group mb-1">
-                                    <span class="input-group-text input">Y</span>
-                                    <input type="number" class="form-control input" v-model="ynether" @keyup="calculateOver">
-                                </div>
-                                <div class="input-group mb-1">
-                                    <span class="input-group-text input">Z</span>
-                                    <input type="number" class="form-control input" v-model="znether" @keyup="calculateOver">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container text-white">
-                    <h3>Instructions</h3>
-                    <ol>
-                        <li>Build your nether portal in the overworld, <b> but do not light it yet.</b></li>
-                        <li>Press F3 while inside your portal frame and note your portal's coordinates. Fill these overworld coordinates in in the calculator. The nether coordinates will automatically be calculated.</li>
-                        <li>Light your portal and go into the Nether.</li>
-                        <li>Go to your coordinates in the Nether: {{ `(${xnether},${ynether},${znether}).` }}</li>
-                        <li>Place a obsidian block on these coordinates.</li>
-                        <li>Use the obsidian as the base of your portal, finish your portal and light it.</li>
-                        <li><b>Important! Remove/disable your old portal you came through in step 3.</b> </li>
-                        <li>Go through your newly built portal in the nether at {{ `(${xnether},${ynether},${znether}).` }}</li>
-                    </ol>
-                </div>
+  <main class="calculator-page">
+    <div class="calculator-frame">
+      <header class="calculator-header text-center">
+        <h1 class="app-title">Nether Calculator</h1>
+        <p class="app-subtitle">
+          Calculate linked portal coordinates between the Overworld and the
+          Nether
+        </p>
+      </header>
+
+      <section class="world-panels">
+        <div class="world-card overworld-card">
+          <div class="world-label">
+            <span class="world-pill overworld-pill">Overworld</span>
+            <span class="world-meta">Main world coordinates</span>
+          </div>
+          <div class="coords-grid">
+            <div class="coord-field">
+              <span class="coord-label">X</span>
+              <input
+                type="number"
+                class="coord-input"
+                v-model="xover"
+                @input="calculateNether"
+              />
             </div>
+            <div class="coord-field">
+              <span class="coord-label">Y</span>
+              <input
+                type="number"
+                class="coord-input"
+                v-model="yover"
+                @input="calculateNether"
+              />
+            </div>
+            <div class="coord-field">
+              <span class="coord-label">Z</span>
+              <input
+                type="number"
+                class="coord-input"
+                v-model="zover"
+                @input="calculateNether"
+              />
+            </div>
+          </div>
         </div>
-        
-        <div class="position-absolute bottom-0 start-50 translate-middle">
-            <span>by: <a class="link-danger" href="https://github.com/BagoesPantera" target="_blank">pantera</a></span>
+
+        <div class="world-card nether-card">
+          <div class="world-label">
+            <span class="world-pill nether-pill">Nether</span>
+            <span class="world-meta">Portal coordinates in the Nether</span>
+          </div>
+          <div class="coords-grid">
+            <div class="coord-field">
+              <span class="coord-label">X</span>
+              <input
+                type="number"
+                class="coord-input"
+                v-model="xnether"
+                @input="calculateOver"
+              />
+            </div>
+            <div class="coord-field">
+              <span class="coord-label">Y</span>
+              <input
+                type="number"
+                class="coord-input"
+                v-model="ynether"
+                @input="calculateOver"
+              />
+            </div>
+            <div class="coord-field">
+              <span class="coord-label">Z</span>
+              <input
+                type="number"
+                class="coord-input"
+                v-model="znether"
+                @input="calculateOver"
+              />
+            </div>
+          </div>
         </div>
-    </main>
+      </section>
+
+      <section class="instructions-card">
+        <h2 class="instructions-title">How to use</h2>
+        <ol class="instructions-list">
+          <li>
+            Build a portal frame in the Overworld, but do not light it yet.
+          </li>
+          <li>
+            Press F3 while standing in the frame, note the coordinates, and fill
+            them into the Overworld section above.
+          </li>
+          <li>
+            The Nether coordinates on the right will be calculated
+            automatically.
+          </li>
+          <li>Light the Overworld portal and go into the Nether.</li>
+          <li>
+            Go to the Nether coordinates:
+            {{ `(${xnether}, ${ynether}, ${znether})` }}.
+          </li>
+          <li>
+            Place an obsidian block at that position, build a new portal around
+            it, and light it.
+          </li>
+          <li>
+            Disable the old Overworld portal so your link always stays
+            consistent.
+          </li>
+          <li>
+            Use the new Nether portal to return to the Overworld at the exact
+            linked location.
+          </li>
+        </ol>
+      </section>
+
+      <footer class="app-footer">
+        <span class="footer-note"
+          >by
+          <a
+            class="footer-link"
+            href="https://github.com/BagoesPantera"
+            target="_blank"
+            >pantera</a
+          ></span
+        >
+        <span class="footer-hint">Minecraft portal helper</span>
+      </footer>
+    </div>
+  </main>
 </template>

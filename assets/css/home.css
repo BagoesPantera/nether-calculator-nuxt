@@ -1,29 +1,284 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Press+Start+2P&display=swap');
 
-*{
-    font-family: 'Roboto', sans-serif;
+* {
+  font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
 }
 
-.body{
-    background: rgb(90,160,125); 
-    background: linear-gradient(90deg, rgba(90,160,125,1) 1%, rgba(0,255,231,1) 100%);
+.calculator-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background:
+    radial-gradient(circle at top, #1b2838 0, #050816 60%, #020308 100%);
+  color: #f9fafb;
 }
 
-.custom-col{
-    height: 30vh;
+.calculator-frame {
+  width: 100%;
+  max-width: 960px;
+  border-radius: 18px;
+  border: 2px solid rgba(148, 163, 184, 0.32);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+  padding: 2.5rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.input{
-    background-color: rgba(255, 255, 255, 0.9)
+.calculator-frame::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  opacity: 0.18;
+  background-image:
+    radial-gradient(circle at 0 0, #22c55e 0, transparent 55%),
+    radial-gradient(circle at 100% 0, #ef4444 0, transparent 55%),
+    radial-gradient(circle at 50% 100%, #facc15 0, transparent 60%);
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
 }
 
-.overworld-card{
-    background-image: url('~/public/overworld.jpg'); 
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
-    background-size: cover;
+.calculator-header {
+  position: relative;
+  z-index: 1;
 }
-.nether-card{
-    background-image: url('~/public/nether.jpg');
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
-    background-size: cover;
+
+.app-title {
+  font-family: "Press Start 2P", system-ui, sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f9fafb;
+  text-shadow: 0 3px 0 #111827;
+}
+
+.app-subtitle {
+  margin-top: 0.85rem;
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+.world-panels {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.world-card {
+  position: relative;
+  padding: 1.5rem 1.5rem 1.75rem;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  backdrop-filter: blur(14px);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+}
+
+.world-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.4), transparent 55%);
+  pointer-events: none;
+}
+
+.world-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.35rem;
+  position: relative;
+  z-index: 1;
+}
+
+.world-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.75);
+}
+
+.overworld-pill {
+  color: #bbf7d0;
+}
+
+.nether-pill {
+  color: #fecaca;
+}
+
+.world-meta {
+  font-size: 0.8rem;
+  color: rgba(249, 250, 251, 0.8);
+}
+
+.coords-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.coord-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.coord-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(249, 250, 251, 0.86);
+}
+
+.coord-input {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.9);
+  color: #f9fafb;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color 120ms ease-out,
+    box-shadow 120ms ease-out,
+    background 120ms ease-out,
+    transform 80ms ease-out;
+}
+
+.coord-input:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 0 1px rgba(234, 179, 8, 0.7);
+  background: rgba(15, 23, 42, 0.96);
+  transform: translateY(-1px);
+}
+
+.coord-input::-webkit-inner-spin-button,
+.coord-input::-webkit-outer-spin-button {
+  margin: 0;
+}
+
+.overworld-card {
+  background-image:
+    linear-gradient(to bottom, rgba(6, 95, 70, 0.78), rgba(15, 23, 42, 0.98)),
+    url('~/public/overworld.jpg');
+}
+
+.nether-card {
+  background-image:
+    linear-gradient(to bottom, rgba(127, 29, 29, 0.8), rgba(15, 23, 42, 0.98)),
+    url('~/public/nether.jpg');
+}
+
+.instructions-card {
+  position: relative;
+  z-index: 1;
+  margin-top: 2.2rem;
+  padding: 1.5rem 1.75rem 1.4rem;
+  border-radius: 16px;
+  border: 1px dashed rgba(148, 163, 184, 0.7);
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), rgba(15, 23, 42, 0.98));
+}
+
+.instructions-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.instructions-list {
+  margin-top: 0.85rem;
+  padding-left: 1.3rem;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.instructions-list b {
+  color: #facc15;
+}
+
+.app-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.footer-link {
+  color: #fb923c;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-link:hover {
+  color: #fed7aa;
+}
+
+.footer-hint {
+  opacity: 0.9;
+}
+
+@media (max-width: 900px) {
+  .calculator-frame {
+    padding: 2.1rem 1.6rem 1.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .world-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .coords-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .calculator-page {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .app-title {
+    font-size: 1.15rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .coords-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
